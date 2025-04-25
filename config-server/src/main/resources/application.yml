@@ -1,0 +1,16 @@
+server:
+  port: 17771
+
+spring:
+  application:
+    name: config-service
+
+  profiles:
+    active: native # if config server target Native File System (Not Git)
+
+  cloud:
+    config:
+      server:
+        native:
+          # Native File System Location (Not Git)
+          search-locations: ./config-file
