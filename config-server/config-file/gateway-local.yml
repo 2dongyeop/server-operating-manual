@@ -1,0 +1,64 @@
+LOG_PATH_NAME: ./logs/gateway
+LOG_FILE_NAME: gateway
+LOG_LEVEL: DEBUG
+ROOT_LOG_LEVEL: DEBUG
+API_SERVER_EXAMPLE: http://localhost:17773
+CROSS_ACCESS_DOMAIN-1: "*"
+
+management:
+  health:
+    defaults:
+      enabled: false # 기본 Health Indicator를 비활성화 (default : true)
+    db:
+      enabled: true # DB Health Indicator 만 활성화 (default : true)
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, health, refresh
+        # refresh : Spring Cloud Context의 새로고침을 트리거
+        # = Config 서버 변경 시 환경 설정 수동으로 반영할 수 있음
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        # 아래 옵션은 Global CORS 설정을 Spring MVC의 기본 URL 핸들러에 매핑하기 위함
+        # 이로 인해, Predicate를 지정하지 않은 경로에도 동일한 CORS를 적용할 수 있음.
+        # 참고 링크 : https://cloud.spring.io/spring-cloud-gateway/reference/html/#cors-configuration
+        add-to-simple-url-handler-mapping: true # (default : false)
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: ${CROSS_ACCESS_DOMAIN-1}
+            allow-credentials: true
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+      routes:
+        - id: api_test
+          uri: ${API_SERVER_EXAMPLE}/test
+          predicates:
+            - Method=GET
+            - Header=Content-Type, application/json
+            - Path=/test
+
+logging:
+  level:
+    root: ${ROOT_LOG_LEVEL}
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway: DEBUG
+    com.songareeit: ${LOG_LEVEL}
+  file:
+    name: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log.%d{yyyy-MM-dd}_%i   # .gz, .zip 등을 넣으면 자동 일자별 로그파일 압축
+      max-file-size: 10MB # 파일당 최대 용량 KB, MB, GB, 10MB를 넘어가면 %i 숫자 증가되면서 롤링
+      max-history: 60
+      total-size-cap: 1GB
+  pattern:
+    console: '%d %clr([%-5level]) %replace(%caller{1}){"Caller\+\d	 at ",""}%msg%n'
+    file: "%d [%-5level] [%thread] [%c{25}] [%method] %msg%n"
