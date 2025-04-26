@@ -1,7 +1,7 @@
 LOG_PATH_NAME: ./logs/gateway
 LOG_FILE_NAME: gateway
 LOG_LEVEL: DEBUG
-ROOT_LOG_LEVEL: DEBUG
+ROOT_LOG_LEVEL: ERROR
 API_SERVER_EXAMPLE: http://localhost:17773
 CROSS_ACCESS_DOMAIN-1: "*"
 
@@ -50,7 +50,7 @@ logging:
     root: ${ROOT_LOG_LEVEL}
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
     org.springframework.cloud.gateway: DEBUG
-    com.songareeit: ${LOG_LEVEL}
+    io.dongvelop: ${LOG_LEVEL}
   file:
     name: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log
   logback:

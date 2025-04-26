@@ -1,0 +1,65 @@
+LOG_PATH_NAME: /wisoft/logs/backend/dev/apiexample
+LOG_FILE_NAME: apiexample
+LOG_LEVEL: DEBUG
+ROOT_LOG_LEVEL: ERROR
+
+management:
+  health:
+    defaults:
+      enabled: false
+    db:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, health
+
+spring:
+  mvc:
+    locale: ko_KR
+  messages:
+    basename: i18n/error
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://task-api.wisoft.io:17770/mydb?useSSL=false&serverTimezone=Asia/Seoul&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8
+    username: dongyeop   # 암호화 필수
+    password: dypassword # 암호화 필수
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 2
+      max-lifetime: 30000
+      idle-timeout: 28000
+      connection-timeout: 500
+
+  # JPA settings
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        # default_schema:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: false
+
+logging:
+  level:
+    root: ${ROOT_LOG_LEVEL}
+    org.hibernate.orm.jdbc.bind: TRACE
+    io.dongvelop: ${LOG_LEVEL}
+  file:
+    name: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log.%d{yyyy-MM-dd}_%i
+      max-file-size: 10MB
+      max-history: 60
+      total-size-cap: 1GB
+  pattern:
+    console: '%d %clr([%-5level]) %replace(%caller{1}){"Caller\+\d	 at ",""}%msg%n'
+    file: "%d [%-5level] [%thread] [%c{25}] [%method] %msg%n"

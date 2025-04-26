@@ -1,11 +1,11 @@
 server:
-  port: 17772
+  port: 17773
 
 spring:
   application:
-    name: gateway
+    name: apiexample
   profiles:
-    active: dev
+    active: local # local, dev, prod
   config:
     import: optional:configserver:http://localhost:17771
   cloud:
