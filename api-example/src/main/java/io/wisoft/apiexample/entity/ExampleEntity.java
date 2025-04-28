@@ -1,4 +1,4 @@
-package io.dongvelop.apiexample.entity;
+package io.wisoft.apiexample.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

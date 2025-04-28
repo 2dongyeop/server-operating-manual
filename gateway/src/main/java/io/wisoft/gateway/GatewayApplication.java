@@ -1,13 +1,13 @@
-package io.dongvelop.apiexample;
+package io.wisoft.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiExampleApplication {
+public class GatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiExampleApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 
 }

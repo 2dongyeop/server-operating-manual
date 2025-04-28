@@ -1,7 +1,7 @@
-package io.dongvelop.apiexample.service;
+package io.wisoft.apiexample.service;
 
-import io.dongvelop.apiexample.entity.ExampleEntity;
-import io.dongvelop.apiexample.repository.ExampleRepository;
+import io.wisoft.apiexample.entity.ExampleEntity;
+import io.wisoft.apiexample.repository.ExampleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

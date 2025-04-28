@@ -1,10 +1,10 @@
-package io.dongvelop.gateway;
+package io.wisoft.apiexample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GatewayApplicationTests {
+class ApiExampleApplicationTests {
 
     @Test
     void contextLoads() {

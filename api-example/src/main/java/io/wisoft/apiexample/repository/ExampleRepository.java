@@ -1,6 +1,6 @@
-package io.dongvelop.apiexample.repository;
+package io.wisoft.apiexample.repository;
 
-import io.dongvelop.apiexample.entity.ExampleEntity;
+import io.wisoft.apiexample.entity.ExampleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

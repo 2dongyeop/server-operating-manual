@@ -1,6 +1,6 @@
-package io.dongvelop.apiexample.endpoint;
+package io.wisoft.apiexample.endpoint;
 
-import io.dongvelop.apiexample.service.ExampleService;
+import io.wisoft.apiexample.service.ExampleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

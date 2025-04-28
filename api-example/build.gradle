@@ -48,3 +48,14 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+
+// Jar 파일 빌드시, 원하는 이름으로 지정
+bootJar {
+    archiveFileName = 'io.wisoft.apiexample.jar'
+}
+
+// xxx-plain.jar 파일을 생성하지 않도록
+jar {
+    enabled = false
+}

@@ -1,10 +1,10 @@
-package io.dongvelop.apiexample;
+package io.wisoft.configserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiExampleApplicationTests {
+class ConfigServerApplicationTests {
 
     @Test
     void contextLoads() {
