@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: apiexample
-  profiles:
-    active: dev # local, dev, prod
   config:
     import: optional:configserver:http://localhost:17771
   cloud:
