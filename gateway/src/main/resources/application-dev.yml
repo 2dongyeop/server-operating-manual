@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: gateway
-  profiles:
-    active: dev
   config:
     import: optional:configserver:http://localhost:17771
   cloud:
