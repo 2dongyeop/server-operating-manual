@@ -39,7 +39,7 @@ spring:
               - OPTIONS
       routes:
         - id: api_test
-          uri: ${API_SERVER_EXAMPLE}/test
+          uri: ${API_SERVER_EXAMPLE}
           predicates:
             - Method=GET
             - Header=Content-Type, application/json
