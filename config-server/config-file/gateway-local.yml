@@ -29,7 +29,7 @@ spring:
         cors-configurations:
           '[/**]':
             allowedOrigins: ${CROSS_ACCESS_DOMAIN-1}
-            allow-credentials: true
+            allow-credentials: false # 추후 allowedOrigins를 특정할 수 있을 때, true로 지정 필요.
             allowedHeaders: '*'
             allowedMethods:
               - GET
