@@ -21,7 +21,7 @@ spring:
     basename: i18n/error
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://task-api.wisoft.io:17770/mydb?useSSL=false&serverTimezone=Asia/Seoul&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8
+    url: jdbc:mysql://daisy.seongwon.org:17770/mydb?useSSL=false&serverTimezone=Asia/Seoul&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8
     username: dongyeop   # 암호화 필수
     password: dypassword # 암호화 필수
     hikari:
@@ -51,7 +51,7 @@ logging:
   level:
     root: ${ROOT_LOG_LEVEL}
     org.hibernate.orm.jdbc.bind: TRACE
-    io.dongvelop: ${LOG_LEVEL}
+    io.wisoft: ${LOG_LEVEL}
   file:
     name: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log
   logback:

@@ -50,7 +50,7 @@ logging:
     root: ${ROOT_LOG_LEVEL}
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
     org.springframework.cloud.gateway: DEBUG
-    io.dongvelop: ${LOG_LEVEL}
+    io.wisoft: ${LOG_LEVEL}
   file:
     name: ${LOG_PATH_NAME}/${LOG_FILE_NAME}.log
   logback:
