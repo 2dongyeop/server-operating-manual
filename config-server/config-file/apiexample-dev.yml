@@ -1,4 +1,4 @@
-LOG_PATH_NAME: ./logs/apiexample
+LOG_PATH_NAME: /wisoft/logs/backend/dev/apiexample
 LOG_FILE_NAME: apiexample
 LOG_LEVEL: DEBUG
 ROOT_LOG_LEVEL: ERROR
