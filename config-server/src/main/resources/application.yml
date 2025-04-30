@@ -13,4 +13,7 @@ spring:
       server:
         native:
           # Native File System Location (Not Git)
-          search-locations: ./config-file
+          # Local 실행시
+#          search-locations: ./config-file
+          # Dev 실행시
+          search-locations: file:///wisoft/backend/dev/configserver/config-file
