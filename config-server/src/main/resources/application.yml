@@ -17,3 +17,9 @@ spring:
 #          search-locations: ./config-file
           # Dev 실행시
           search-locations: file:///wisoft/backend/dev/configserver/config-file
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, httptrace, info, metrics, prometheus

@@ -12,7 +12,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus, health
+        include: health, httptrace, info, metrics, prometheus
 
 spring:
   mvc:

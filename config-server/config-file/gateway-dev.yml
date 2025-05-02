@@ -14,7 +14,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus, health, refresh
+        include: health, httptrace, info, metrics, prometheus, refresh
         # refresh : Spring Cloud Context의 새로고침을 트리거
         # = Config 서버 변경 시 환경 설정 수동으로 반영할 수 있음
 
@@ -42,7 +42,6 @@ spring:
           uri: ${API_SERVER_EXAMPLE}
           predicates:
             - Method=GET
-            - Header=Content-Type, application/json
             - Path=/test
 
 logging:
