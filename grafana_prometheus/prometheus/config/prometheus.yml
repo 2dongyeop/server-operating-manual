@@ -1,0 +1,58 @@
+# 전역 설정
+global:
+  scrape_interval: 15s    # 15초 마다 Metric을 Pulling / scrap target의 기본 interval을 15초로 변경 / default = 1m
+  scrape_timeout: 15s     # scrap request 가 timeout 나는 길이 / default = 10s
+  evaluation_interval: 2m # rule 을 얼마나 빈번하게 검증하는지 / default = 1m
+
+  external_labels:
+    monitor: "codelab-monitor"       # 기본적으로 붙여줄 라벨
+  query_log_file: /prometheus/query_log_file.log # prometheus의 쿼리 로그들을 기록, 없으면 기록안함
+
+# 규칙을 로딩하고 'evaluation_interval' 설정에 따라 정기적으로 평가한다.
+rule_files:
+  - "rule.yml" # 파일 위치는 prometheus.yml 이 있는 곳과 동일 위치
+
+# 매트릭을 수집할 엔드포인드로 여기선 Prometheus 서버 자신을 가리킨다.
+scrape_configs:
+
+  # 이 설정에서 수집한 타임시리즈에 `job=<job_name>`으로 잡의 이름을 설정한다.
+  # metrics_path의 기본 경로는 '/metrics'이고 scheme의 기본값은 `http`다
+  - job_name: "spring-actuator-prometheus" # job_name 은 모든 scrap 내에서 고유해야함
+    scrape_interval: 10s                   # global에서 default 값을 정의해주었기 떄문에 안써도됨
+    scrape_timeout: 10s                    # global에서 default 값을 정의해주었기 떄문에 안써도됨
+    metrics_path: "/actuator/prometheus"   # 옵션 - prometheus가 metrics를 얻기위해 참조하는 URI를 변경할 수 있음 | default = /metrics
+    honor_labels: false                    # 옵션 - 라벨 충동이 있을경우 라벨을 변경할지설정(false일 경우 라벨 안바뀜) | default = false
+    honor_timestamps: false                # 옵션 - honor_labels이 참일 경우, metrics timestamp가 노출됨(true일 경우) | default = false
+    scheme: "http"                         # 옵션 - request를 보낼 scheme 설정 | default = http
+
+    # 실제 scrap 하는 타겟에 관한 설정
+    static_configs:
+      - targets: ["host.docker.internal:17771"]
+        labels:
+          instance: "01.Config_Server"
+          application: "개발기"
+          #- targets: ["host.docker.internal:17772"]
+      - targets: ["host.docker.internal:17772"]
+        labels:
+          instance: "02.Gateway"
+          application: "개발기"
+      - targets: ["host.docker.internal:17773"]
+        labels:
+          instance: "03.API_Example"
+          application: "개발기"
+
+
+
+  - job_name: "nginx-prometheus"
+    scrape_interval: 10s
+    scrape_timeout: 10s
+    metrics_path: "/metrics"
+    honor_labels: false
+    honor_timestamps: false
+    scheme: "http"
+
+    static_configs:
+      - targets: ["host.docker.internal:17775"]   # nginx_prometheus_exporter 주소여야 함.
+        labels:
+          instance: "Nginx Web Server"
+          application: "개발기"
